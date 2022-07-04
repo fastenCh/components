@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.ch.ui.form.FormLabel
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我是内容"
+        android:textSize="16sp"
+        android:title="我是标题:"
+        app:textMarginLeft="20dp"
+        app:textMarginRight="20dp"
+        app:unit="@string/unit_person" />
+
+    <com.ch.ui.form.FormLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容" />
+
+    </com.ch.ui.form.FormLayout>
+
+    <com.ch.ui.form.FormFiled
+        android:id="@+id/ff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

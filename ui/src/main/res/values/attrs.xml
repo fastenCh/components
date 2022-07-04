@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="titleTextSize" format="dimension" />
+    <attr name="unit" format="string" />
+    <attr name="unitTextColor" format="color" />
+    <attr name="unitTextSize" format="dimension" />
+
+    <attr name="leftDrawable" format="reference" />
+    <attr name="leftDrawableSize" format="dimension" />
+    <attr name="leftDrawableTint" format="color" />
+    <attr name="leftDrawablePadding" format="dimension" />
+
+    <attr name="rightDrawable" format="reference" />
+    <attr name="rightDrawableSize" format="dimension" />
+    <attr name="rightDrawableTint" format="color" />
+    <attr name="rightDrawablePadding" format="dimension" />
+
+    <!-- FormField -->
+    <declare-styleable name="FormText">
+        <!--标题-->
+        <attr name="android:title" />
+        <attr name="android:titleTextColor" />
+        <attr name="titleTextSize" />
+        <!--文本-->
+        <attr name="android:text" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:gravity" />
+        <attr name="android:hint" />
+        <!--单位-->
+        <attr name="unit" />
+        <attr name="unitTextColor" />
+        <attr name="unitTextSize" />
+
+    </declare-styleable>
+
+    <declare-styleable name="FormLayout">
+        <!--标题-->
+        <attr name="android:title" />
+        <attr name="android:titleTextColor" />
+        <attr name="titleTextSize" />
+        <!--内容-->
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <!--单位-->
+        <attr name="unit" />
+        <attr name="unitTextColor" />
+        <attr name="unitTextSize" />
+        <!--其他属性-->
+        <!--所有文本颜色-->
+        <attr name="textColor" format="color" />
+        <!--用于控制文本左右间距-->
+        <attr name="titleMarginLeft" format="dimension" />
+        <attr name="titleMarginRight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="FormLabel">
+        <!--标题-->
+        <attr name="android:title" />
+        <attr name="android:titleTextColor" />
+        <attr name="titleTextSize" />
+        <!--内容-->
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <!--单位-->
+        <attr name="unit" />
+        <attr name="unitTextColor" />
+        <attr name="unitTextSize" />
+        <!--其他属性-->
+        <!--所有文本颜色-->
+        <attr name="textColor" format="color" />
+        <!--用于控制文本左右间距-->
+        <attr name="textMarginLeft" format="dimension" />
+        <attr name="textMarginRight" format="dimension" />
+    </declare-styleable>
+</resources>
