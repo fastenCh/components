@@ -1,6 +1,8 @@
 package com.ch.ui.form
 
 import android.content.Context
+import android.graphics.Color
+import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import com.ch.ui.R
@@ -14,133 +16,159 @@ class FormLabel @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attributeSet, defStyleAttr) {
-
-    var isInit = false
-    var mTextColor: Int = -1
-
     var mTitle: String? = null
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
-    var mUnit: String? = null
+    var mLeftTitle: String? = null
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
-
-    var mTextSize: Int = -1
+    var mRightTitle: String? = null
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
 
+    var mLeftTitleTextSize: Int = -1
+        set(value) {
+            field = value
+            refreshTitle()
+        }
     var mTitleTextSize: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
-    var mUnitTextSize: Int = -1
+    var mRightTitleTextSize: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
 
-    var mAndroidTextColor: Int = -1
+    var mLeftTitleTextColor: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
     var mTitleTextColor: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
-    var mUnitTextColor: Int = -1
+    var mRightTitleTextColor: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
 
+    private var mAndroidTextColor: Int = Color.parseColor("#666666")
+    private var mAndroidTextSize: Int = -1
     var mTextMarginLeft: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
     var mTextMarginRight: Int = -1
         set(value) {
             field = value
-            applyText()
+            refreshTitle()
         }
 
+    var isInit = false
 
     init {
         val a = context.obtainStyledAttributes(attributeSet, R.styleable.FormLabel)
+        mTitle = text.toString()
+        //=========FormLabel 标题左侧=========
+        a.getViewText(R.styleable.FormLabel_leftTitle) { mLeftTitle = it }
+        a.getViewSp(R.styleable.FormLabel_leftTitleSize) { mLeftTitleTextSize = it }
+        a.getViewColor(R.styleable.FormLabel_leftTitleColor) { mLeftTitleTextColor = it }
+        //=========FormLabel 标题部分=========
         a.getViewText(R.styleable.FormLabel_android_title) { mTitle = it }
-        a.getViewText(R.styleable.FormLabel_unit) { mUnit = it }
-
-        a.getViewSp(R.styleable.FormLabel_titleTextSize) { mTitleTextSize = it }
-        a.getViewSp(R.styleable.FormLabel_unitTextSize) { mUnitTextSize = it }
-        a.getViewSp(R.styleable.FormLabel_android_textSize) { mTextSize = it }
-
+        a.getViewSp(R.styleable.FormLabel_titleSize) { mTitleTextSize = it }
         a.getViewColor(R.styleable.FormLabel_android_titleTextColor) { mTitleTextColor = it }
-        a.getViewColor(R.styleable.FormLabel_unitTextColor) { mUnitTextColor = it }
+        a.getViewDp(R.styleable.FormLabel_titleMarginLeft) { mTextMarginLeft = it }
+        a.getViewDp(R.styleable.FormLabel_titleMarginRight) { mTextMarginRight = it }
+        //=========FormLabel 标题右侧=========
+        a.getViewText(R.styleable.FormLabel_rightTitle) { mRightTitle = it }
+        a.getViewSp(R.styleable.FormLabel_rightTitleSize) { mRightTitleTextSize = it }
+        a.getViewColor(R.styleable.FormLabel_rightTitleColor) { mRightTitleTextColor = it }
+        //=========FormLabel 通用属性=========
+        a.getViewSp(R.styleable.FormLabel_android_textSize) { mAndroidTextSize = it }
         a.getViewColor(R.styleable.FormLabel_android_textColor) { mAndroidTextColor = it }
-
-        a.getViewDp(R.styleable.FormLabel_textMarginLeft) { mTextMarginLeft = it }
-        a.getViewDp(R.styleable.FormLabel_textMarginRight) { mTextMarginRight = it }
-
-        a.getViewColor(R.styleable.FormLabel_textColor) { mTextColor = it }
-
         a.recycle()
         isInit = true
-        applyText()
+        refreshTitle()
     }
 
-    fun applyText(text: String?) {
-        this.text = text ?: ""
-        applyText()
-    }
-
-    private fun applyText() {
+    private fun refreshTitle() {
         if (!isInit) return
-        val span = SpanUtils.with(this)
-        //标题部分
-        span.append(mTitle ?: "")
-        if (mTitleTextColor != -1) span.setForegroundColor(mTitleTextColor) else {
-            if (mTextColor != -1) span.setForegroundColor(mTextColor)
+        text = getWholeText()
+    }
+
+    private fun getWholeText(): SpannableStringBuilder {
+        val span = SpanUtils()
+        //左侧标题部分
+        span.append(mLeftTitle ?: "")
+        if (mLeftTitleTextColor != -1) {
+            span.setForegroundColor(mLeftTitleTextColor)
+        } else {
+            if (mAndroidTextColor != -1) span.setForegroundColor(mAndroidTextColor)
+            if (mTitleTextColor != -1) span.setForegroundColor(mTitleTextColor)
         }
-        if (mTitleTextSize != -1) span.setFontSize(mTitleTextSize) else {
-            if (mTextSize != -1) span.setFontSize(mTextSize)
+        if (mLeftTitleTextSize != -1) {
+            span.setFontSize(mLeftTitleTextSize)
+        } else {
+            if (mAndroidTextSize != -1) span.setFontSize(mAndroidTextSize)
         }
         if (mTextMarginLeft != -1) span.appendSpace(mTextMarginLeft)
+
         //内容部分
-        span.append(text ?: "")
-        if (mAndroidTextColor != -1) span.setForegroundColor(mAndroidTextColor) else {
-            if (mTextColor != -1) span.setForegroundColor(mTextColor)
+        span.append(mTitle ?: "")
+        if (mTitleTextColor != -1) {
+            span.setForegroundColor(mTitleTextColor)
+        } else {
+            if (mAndroidTextColor != -1) span.setForegroundColor(mAndroidTextColor)
         }
-        if (mTextSize != -1) span.setFontSize(mTextSize)
+        if (mTitleTextSize != -1) {
+            span.setFontSize(mTitleTextSize)
+        } else {
+            if (mAndroidTextSize != -1) span.setFontSize(mAndroidTextSize)
+        }
         if (mTextMarginRight != -1) span.appendSpace(mTextMarginRight)
+
         //单位部分
-        span.append(mUnit ?: "")
-        if (mUnitTextColor != -1) span.setForegroundColor(mUnitTextColor) else {
-            if (mTextColor != -1) span.setForegroundColor(mTextColor)
+        span.append(mRightTitle ?: "")
+        if (mRightTitleTextColor != -1) {
+            span.setForegroundColor(mRightTitleTextColor)
+        } else {
+            if (mAndroidTextColor != -1) span.setForegroundColor(mAndroidTextColor)
+            if (mTitleTextColor != -1) span.setForegroundColor(mTitleTextColor)
         }
-        if (mUnitTextSize != -1) span.setFontSize(mTitleTextSize) else {
-            if (mTextSize != -1) span.setFontSize(mTextSize)
+        if (mRightTitleTextSize != -1) {
+            span.setFontSize(mLeftTitleTextSize)
+        } else {
+            if (mAndroidTextSize != -1) span.setFontSize(mAndroidTextSize)
         }
-        span.create()
+        return span.create()
+    }
+
+    override fun setText(text: CharSequence?, type: BufferType?) {
+        if (isInit) super.setText(getWholeText(), type) else super.setText(text, type)
     }
 
     override fun getText(): CharSequence {
         var text = super.getText().toString()
-        if (!mTitle.isNullOrEmpty() && text.startsWith(mTitle!!)) {
-            var length = mTitle!!.length
+        if (!mLeftTitle.isNullOrEmpty() && text.startsWith(mLeftTitle!!)) {
+            var length = mLeftTitle!!.length
             if (mTextMarginLeft != -1) length += 3
             text = text.substring(length)
         }
-        if (!mUnit.isNullOrEmpty() && text.endsWith(mUnit!!)) {
-            var length = text.length - mUnit!!.length
+        if (!mRightTitle.isNullOrEmpty() && text.endsWith(mRightTitle!!)) {
+            var length = text.length - mRightTitle!!.length
             if (mTextMarginRight != -1) length -= 3
             text = text.substring(0, length)
         }

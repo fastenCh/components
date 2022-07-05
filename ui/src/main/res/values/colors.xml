@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="md_dividers">@color/md_light_dividers</color>
+    <color name="bg_normal">@color/cardview_light_background</color>
+    <color name="bg_select">@color/md_grey_200</color>
+</resources>

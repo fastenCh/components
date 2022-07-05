@@ -11,30 +11,23 @@
         android:id="@+id/fl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我是内容"
+        android:text="我是内容呀"
         android:textSize="16sp"
-        android:title="我是标题:"
-        app:textMarginLeft="20dp"
-        app:textMarginRight="20dp"
-        app:unit="@string/unit_person" />
-
-    <com.ch.ui.form.FormLayout
-        android:id="@+id/fl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容" />
-
-    </com.ch.ui.form.FormLayout>
+        app:leftTitle="我是标题:"
+        app:rightTitle="@string/unit_person" />
 
     <com.ch.ui.form.FormFiled
         android:id="@+id/ff"
+        android:title="我是标题"
+        app:decimalLength="3"
+        app:integerLength="5"
+        android:hint="请输入内容"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

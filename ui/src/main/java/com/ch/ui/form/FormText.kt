@@ -14,54 +14,34 @@ class FormText @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attributeSet, defStyleAttr) {
-    val mTvTitle: TextView
+) : FormLayout(context, attributeSet, defStyleAttr) {
     val mTvText: TextView
-    val mTvUnit: TextView
-
-    val mTitleStart: String? = null
-    val mTitleEnd: String? = null
+    var isCanClick = true    //设置点击事件开关，用于同一个界面下点击事件的开关
 
     init {
         inflate(context, R.layout.layout_form_text, this)
-        mTvTitle = findViewById(R.id.tv_title)
         mTvText = findViewById(R.id.tv_text)
-        mTvUnit = findViewById(R.id.tv_unit)
-
         val a = context.obtainStyledAttributes(attributeSet, R.styleable.FormText)
-        //title
-        a.getViewText(R.styleable.FormText_android_title, this::setTitleText)
-        a.getViewColor(R.styleable.FormText_android_titleTextColor, this::setTitleTextColor)
-        a.getViewSp(R.styleable.FormText_titleTextSize, this::setTitleTextSize)
-
         //text
         a.getViewText(R.styleable.FormText_android_text, this::setText)
+        a.getViewText(R.styleable.FormText_android_hint, this::setHintText)
         a.getViewColor(R.styleable.FormText_android_textColor, this::setTextColor)
         a.getViewSp(R.styleable.FormText_android_textSize, this::setTextSize)
-
-        //unit
-        a.getViewText(R.styleable.FormText_unit, this::setUnitText)
-        a.getViewColor(R.styleable.FormText_unitTextColor, this::setUnitTextColor)
-        a.getViewSp(R.styleable.FormText_unitTextSize, this::setUnitTextSize)
-
+        a.getViewSp(R.styleable.FormText_android_gravity, this::setTextGravity)
         a.recycle()
     }
-
-    /** Title属性设置 */
-    fun setTitleText(title: CharSequence? = null) = setTitleText(title.toString())
-    fun setTitleText(title: String? = null) = run { mTvTitle.text = title ?: "" }
-    fun setTitleTextColor(titleTextColor: Int) = mTvTitle.setTextColor(titleTextColor)
-    fun setTitleTextSize(titleTextSize: Int) = run { mTvTitle.textSize = titleTextSize.toFloat() }
 
     /** Text属性设置 */
     fun setText(title: CharSequence? = null) = setText(title.toString())
     fun setText(title: String? = null) = run { mTvText.text = title ?: "" }
+    fun setHintText(title: String? = null) = run { mTvText.hint = title ?: "" }
     fun setTextColor(titleTextColor: Int) = mTvText.setTextColor(titleTextColor)
     fun setTextSize(titleTextSize: Int) = run { mTvText.textSize = titleTextSize.toFloat() }
+    fun setTextGravity(gravity: Int) = run { mTvText.gravity = gravity }
 
-    /** Unit属性设置 */
-    fun setUnitText(title: CharSequence? = null) = setUnitText(title.toString())
-    fun setUnitText(title: String? = null) = run { mTvUnit.text = title ?: "" }
-    fun setUnitTextColor(titleTextColor: Int) = mTvUnit.setTextColor(titleTextColor)
-    fun setUnitTextSize(titleTextSize: Int) = run { mTvUnit.textSize = titleTextSize.toFloat() }
+    fun setTextClickCenter(block: () -> Unit) {
+        mTvText.setOnClickListener { if (isCanClick) block() }
+        //未设置点击事件时，监听单位的点击事件，用于扩大点击事件范围
+        if (!isLisUnitClick) mTvUnit.setOnClickListener { if (isCanClick) block() }
+    }
 }
