@@ -19,8 +19,7 @@
     <com.ch.ui.form.FormFiled
         android:id="@+id/ff"
         android:title="我是标题"
-        app:decimalLength="3"
-        app:integerLength="5"
+        android:digits="123456799*"
         android:hint="请输入内容"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -29,5 +28,16 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:stepSize="1"
+        android:numStars="5"
+        android:rating="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.ch.ui.select.PictureView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

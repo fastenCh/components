@@ -18,10 +18,11 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         val ff = findViewById<FormFiled>(R.id.ff);
-        ff.setOnClickListener {
+        ff.setTextClickCenter {
+            Toast.makeText(this, "AAAA", Toast.LENGTH_SHORT).show()
         }
         findViewById<Button>(R.id.btn).setOnClickListener {
-            Toast.makeText(this, "金额为：${ff.mEtText.text.toString().trim().toFloat()}", Toast.LENGTH_SHORT).show()
+           ff.setIsCanEdit(!ff.getIsCanEdit())
         }
     }
 }

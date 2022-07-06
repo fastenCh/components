@@ -1,9 +1,8 @@
 package com.ch.ui.form
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
-import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.TextView
 import com.ch.ui.R
 import com.ch.ui.utils.getViewColor
@@ -16,7 +15,7 @@ class FormText @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FormLayout(context, attributeSet, defStyleAttr) {
     val mTvText: TextView
-    var isCanClick = true    //设置点击事件开关，用于同一个界面下点击事件的开关
+    private var mIsCanEdit = true    //设置点击事件开关，用于同一个界面下点击事件的开关
 
     init {
         inflate(context, R.layout.layout_form_text, this)
@@ -31,6 +30,15 @@ class FormText @JvmOverloads constructor(
         a.recycle()
     }
 
+    /** 获取内容 */
+    fun getText() = mTvText.text.toString().trim()
+
+    /** 设置是否可编辑 */
+    fun setIsCanEdit(isCanEdit: Boolean) = kotlin.run { mIsCanEdit = isCanEdit }
+
+    /** 设置允许编辑 */
+    fun getIsCanEdit() = mIsCanEdit
+
     /** Text属性设置 */
     fun setText(title: CharSequence? = null) = setText(title.toString())
     fun setText(title: String? = null) = run { mTvText.text = title ?: "" }
@@ -40,8 +48,8 @@ class FormText @JvmOverloads constructor(
     fun setTextGravity(gravity: Int) = run { mTvText.gravity = gravity }
 
     fun setTextClickCenter(block: () -> Unit) {
-        mTvText.setOnClickListener { if (isCanClick) block() }
+        mTvText.setOnClickListener { if (mIsCanEdit) block() }
         //未设置点击事件时，监听单位的点击事件，用于扩大点击事件范围
-        if (!isLisUnitClick) mTvUnit.setOnClickListener { if (isCanClick) block() }
+        if (!isLisUnitClick) mTvUnit.setOnClickListener { if (mIsCanEdit) block() }
     }
 }

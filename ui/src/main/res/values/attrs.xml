@@ -92,4 +92,46 @@
         <attr name="titleMarginLeft" />
         <attr name="titleMarginRight" />
     </declare-styleable>
+
+    <declare-styleable name="PasswordView">
+        <attr name="inputMaxNum" format="integer" />
+        <attr name="roundAngle" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="divingColor" format="color" />
+        <attr name="circleColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="divingWidth" format="dimension" />
+        <attr name="circleRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordEditText">
+        <attr name="isAlwaysShow" format="boolean" />
+        <attr name="isShow" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="max_select" format="integer" />
+        <attr name="isSingle" format="boolean" />
+        <attr name="tag_gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PicView">
+        <attr name="selectStyle">
+            <enum name="picture" value="1" />
+            <enum name="camera" value="2" />
+        </attr>
+        <attr name="spanCount" format="integer" />
+        <attr name="maxCount" format="integer" />
+        <attr name="isPriView" format="boolean" />
+        <!--自定义参数1，自定义-->
+        <attr name="customParam1" format="integer" />
+        <!--自定义参数2，自定义 -->
+        <attr name="customParam2" format="integer" />
+        <!--自定义参数2，自定义 -->
+        <attr name="customParam3" format="integer" />
+    </declare-styleable>
 </resources>

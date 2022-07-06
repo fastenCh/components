@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Project/architecture/components/app/src/main/res/layout-v23/activity_main.xml" value="0.3859375" />
         <entry key="..\:/Project/architecture/components/app/src/main/res/layout/activity_main.xml" value="0.38177083333333334" />
+        <entry key="..\:/Project/architecture/components/ui/src/main/res/drawable/ic_visibility.xml" value="0.27" />
         <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_container.xml" value="0.3859375" />
         <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_filed.xml" value="0.3859375" />
         <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_text.xml" value="0.38177083333333334" />
+        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_picture_view.xml" value="0.3859375" />
+        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_picture_view_item.xml" value="0.3859375" />
       </map>
     </option>
   </component>
