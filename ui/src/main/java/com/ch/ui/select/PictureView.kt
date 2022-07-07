@@ -7,6 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ch.ui.R
 import java.lang.NullPointerException
 
+/**
+ * 图片选择组件【重构版本】
+ * @author ch
+ * @date 2022年7月7日11:22:08
+ */
 class PictureView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -35,7 +40,7 @@ class PictureView @JvmOverloads constructor(
         mCustomParam2 = a.getInt(R.styleable.PicView_customParam2, 1)
         mCustomParam3 = a.getInt(R.styleable.PicView_customParam3, 1)
         mIsPriView = a.getBoolean(R.styleable.PicView_isPriView, false)
-        mMaxCount = a.getInt(R.styleable.PicView_maxCount, spanCount)
+        mMaxCount = a.getInt(R.styleable.PicView_maxCount, mMaxCount)
         a.recycle()
         layoutManager = GridLayoutManager(context, spanCount)
         if (globalViewsAdapter != null) {
@@ -51,6 +56,11 @@ class PictureView @JvmOverloads constructor(
 
     private fun getPicAdapter(): PictureAdapter<*>? {
         return adapter as PictureAdapter<*>
+    }
+
+    @Deprecated("setAdapter(adapter: PictureAdapter<*>)")
+    override fun setAdapter(adapter: Adapter<*>?) {
+        super.setAdapter(adapter)
     }
 
     /**
@@ -134,6 +144,13 @@ class PictureView @JvmOverloads constructor(
             throw NullPointerException("please call method setAdapter() or set global adapter")
         }
         return getPicListByType(PictureBean.TYPE_NET);
+    }
+
+    /**
+     * 外部监听，用于刷新界面及拦截器作用
+     */
+    fun setAddListener(block: (pictureBean: PictureBean<*>) -> PictureBean<*>) {
+        getPicAdapter()?.setAddListener(block)
     }
 
     /**

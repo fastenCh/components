@@ -9,7 +9,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.ch.ui.R
 
-abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
+/**
+ * 图片选择组件适配器，子类需实现此类
+ * @author ch
+ */
+abstract class PictureAdapter<T> : RecyclerView.Adapter<PictureAdapter.PicViewHolder>() {
     protected lateinit var mContext: Context
     protected var mSelectStyle: Int = 1
     protected var mCustomParam1: Int = 1;
@@ -18,6 +22,7 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
     protected var mMaxCount: Int = 3
     protected var mIsPreview: Boolean = false
     var mDataList = mutableListOf<PictureView.PictureBean<*>>()
+    var mBlock: (pictureBean: PictureView.PictureBean<*>) -> PictureView.PictureBean<*>? = { null }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -55,6 +60,7 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
         mCustomParam3 = customParam3;
         mIsPreview = isPreview;
         insertAddPic()
+        notifyDataSetChanged()
     }
 
     /**
@@ -71,10 +77,11 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
      * 删除图片方法
      * @param position 图片位置索引
      */
+    @SuppressLint("NotifyDataSetChanged")
     open fun deletePic(position: Int) {
         mDataList.removeAt(position)
-        notifyItemRemoved(position)
         insertAddPic()
+        notifyDataSetChanged()
     }
 
     /**
@@ -94,12 +101,24 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
     open fun addPic(pictureBean: PictureView.PictureBean<*>) {
         deleteAddPic()
         if (getSize() < mMaxCount) {
+            mDataList.add(mBlock(pictureBean) ?: pictureBean)
             mDataList.add(pictureBean)
-            notifyItemChanged(getSize())
         }
         insertAddPic()
+        notifyDataSetChanged()
     }
 
+    /**
+     * 外部监听，用于刷新界面及拦截器作用
+     */
+    fun setAddListener(block: (pictureBean: PictureView.PictureBean<*>) -> PictureView.PictureBean<*>) {
+        this.mBlock = block
+    }
+
+    /***
+     * 获取新增图片
+     * @return PictureBean<*>?
+     */
     private fun getAddPic() = mDataList.find { it.isAddImg() }
 
     /**
@@ -111,7 +130,6 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
                 val pictureBean = PictureView.PictureBean<String>()
                 pictureBean.type = PictureView.PictureBean.TYPE_ADD
                 mDataList.add(pictureBean)
-                notifyItemChanged(getSize())
             }
         }
     }
@@ -122,11 +140,7 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
      */
     private fun deleteAddPic() {
         val addPic = getAddPic()
-        if (addPic != null) {
-            val position = mDataList.indexOf(addPic)
-            mDataList.remove(addPic)
-            notifyItemChanged(position)
-        }
+        if (addPic != null) mDataList.remove(addPic)
     }
 
     /**
@@ -171,17 +185,22 @@ abstract class PictureAdapter<T> : RecyclerView.Adapter<PicViewHolder>() {
     override fun onBindViewHolder(holder: PicViewHolder, position: Int) {
         val data = mDataList[position]
         val url = getUrl(data)
+        if (data.isAddImg()) {
+            holder.ivPic.setImageResource(R.drawable.ic_add_image)
+        } else {
+            loadPic(holder.ivPic, url, data)
+        }
         // 根据状态隐藏删除按钮：预览模式或新增图标
         holder.ivDelete.visibility = if (mIsPreview || data.isAddImg()) View.GONE else View.VISIBLE
-        loadPic(holder.ivPic, url, data)
         holder.ivDelete.setOnClickListener { deletePic(position) }
         holder.ivPic.setOnClickListener { if (data.isAddImg()) onClickAdd() else showPic(holder.ivPic, url, data) }
     }
 
     override fun getItemCount(): Int = mDataList.size
-}
 
-class PicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val ivPic: ImageView = itemView.findViewById(R.id.iv_pic)
-    val ivDelete: ImageView = itemView.findViewById(R.id.iv_delete)
+    class PicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val ivPic: ImageView = itemView.findViewById(R.id.iv_pic)
+        val ivDelete: ImageView = itemView.findViewById(R.id.iv_delete)
+    }
+
 }

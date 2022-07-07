@@ -1,4 +1,4 @@
-package com.ch.ui.select
+package com.ch.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,6 +9,7 @@ class SquareRelativeLayout @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attributeSet, defStyleAttr) {
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }

@@ -13,19 +13,15 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener
 
 class PicAdapter : PictureAdapter<PictureView.PictureBean<*>>() {
     override fun loadPic(imageView: ImageView, url: String, data: PictureView.PictureBean<*>) {
-        if (data.isAddImg()){
-            imageView.setBackgroundResource(com.ch.ui.R.drawable.ic_add_image)
-        }else{
-            Glide.with(mContext).load(url).into(imageView)
-        }
+        Glide.with(mContext).load(url).fitCenter().centerCrop().into(imageView)
     }
 
     override fun showPic(imageView: ImageView, url: String, data: PictureView.PictureBean<*>) {
     }
 
     override fun getUrl(data: PictureView.PictureBean<*>): String {
-        if (data.data is LocalMedia){
-            return (data.data as LocalMedia).realPath
+        if (data.data is LocalMedia) {
+            return (data.data as LocalMedia).path
         }
         return ""
     }
@@ -42,6 +38,7 @@ class PicAdapter : PictureAdapter<PictureView.PictureBean<*>>() {
                         addPic(picBean)
                     }
                 }
+
                 override fun onCancel() {}
             })
     }

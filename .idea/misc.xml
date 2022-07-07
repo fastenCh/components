@@ -3,21 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Project/architecture/components/app/src/main/res/layout-v23/activity_main.xml" value="0.3859375" />
-        <entry key="..\:/Project/architecture/components/app/src/main/res/layout/activity_main.xml" value="0.38177083333333334" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/drawable/ic_visibility.xml" value="0.27" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_container.xml" value="0.3859375" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_filed.xml" value="0.3859375" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_form_text.xml" value="0.38177083333333334" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_picture_view.xml" value="0.3859375" />
-        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_picture_view_item.xml" value="0.3859375" />
+        <entry key="..\:/Project/architecture/components/app/src/main/res/layout/activity_main.xml" value="0.38" />
+        <entry key="..\:/Project/architecture/components/ui/src/main/res/layout/layout_picture_item.xml" value="0.3859375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
