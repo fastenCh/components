@@ -14,6 +14,7 @@
     <attr name="unit" format="string" />
     <attr name="unitTextColor" format="color" />
     <attr name="unitTextSize" format="dimension" />
+    <attr name="isShowLine" format="boolean" />
 
     <declare-styleable name="FormFiled">
         <attr name="android:text" />
@@ -70,7 +71,7 @@
         <!--标题最小宽度-->
         <attr name="titleMinWidth" format="dimension" />
         <!--是否展示分割线-->
-        <attr name="isShowLine" format="boolean" />
+        <attr name="isShowLine" />
     </declare-styleable>
 
     <declare-styleable name="FormLabel">
@@ -133,5 +134,30 @@
         <attr name="customParam2" format="integer" />
         <!--自定义参数2，自定义 -->
         <attr name="customParam3" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleBar">
+        <!--左侧图标-->
+        <attr name="leftDrawable" format="reference" />
+        <!--中部名称-->
+        <attr name="android:title" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <!--右侧文字-->
+        <attr name="rightTitle1" format="string"/>
+        <attr name="rightTitleColor1"  format="color" />
+        <attr name="rightTitleSize1"  format="dimension" />
+        <attr name="rightTitle2" format="string"/>
+        <attr name="rightTitleColor2"  format="color" />
+        <attr name="rightTitleSize2"  format="dimension" />
+        <!--右侧图标-->
+        <attr name="rightDrawable1" format="reference" />
+        <attr name="rightDrawable2" format="reference" />
+        <!--是否自动注册返回事件，用于返回时无其他操作的情况-->
+        <attr name="isBack" format="boolean" />
+        <!--是否使用沉浸式，此处主要用于ViewPager+Fragment-->
+        <attr name="isSupportImmersion" format="boolean" />
+        <!--是否展示底部分隔线-->
+        <attr name="isShowLine" />
     </declare-styleable>
 </resources>

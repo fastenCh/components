@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.ch.ui.TitleBar
+        android:layout_width="match_parent"
+        app:isBack="true"
+        app:rightTitle1="測試"
+        app:rightTitle2="測試2"
+        app:rightDrawable1="@drawable/ic_back"
+        app:rightDrawable2="@drawable/ic_back"
+        android:layout_height="wrap_content"
+        android:title="我是标题" />
+
     <com.ch.ui.form.FormLabel
         android:id="@+id/fl_title"
         android:layout_width="match_parent"
