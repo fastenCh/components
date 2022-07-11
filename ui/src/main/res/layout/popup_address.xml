@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_address">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/ic_close"
+        android:padding="5dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="12dp"
+        android:gravity="center"
+        android:text="请选择地区"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_finish"
+        app:layout_constraintStart_toEndOf="@+id/iv_close"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="完成"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <View
+        android:id="@+id/line"
+        style="@style/Style.Line"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:tabGravity="fill"
+        app:tabIndicator="?attr/colorPrimary"
+        app:tabIndicatorFullWidth="false"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabPadding="0dp"
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/font_999" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_province"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_menu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_city"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_menu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_area"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_menu" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_loading"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rv_province"
+        app:layout_constraintTop_toBottomOf="@+id/tl_menu">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="正在加载中..." />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

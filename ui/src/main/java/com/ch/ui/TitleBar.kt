@@ -17,7 +17,7 @@ import com.ch.ui.utils.*
 
 /**
  * @author ch
- * @daye 2022年7月7日14:30:19
+ * @date 2022年7月7日14:30:19
  */
 class TitleBar @JvmOverloads constructor(
     context: Context,
@@ -109,7 +109,6 @@ class TitleBar @JvmOverloads constructor(
                 val drawable = ContextCompat.getDrawable(context, R.drawable.ic_back)!!
                 DrawableCompat.wrap(drawable)
                 DrawableCompat.setTint(drawable.mutate(), mTextColor)
-                drawable.setBounds(0, 0, 24, 24)
                 mIvLeft.background = drawable
                 if (context is Activity) {
                     setLeftClickListener {
