@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
+import com.ch.core.ktx.add
+import com.ch.core.ktx.startActivity
+import com.ch.core.ktx.sub
+import com.ch.core.ktx.toDecimal
 import com.ch.ui.TitleBar
 import com.ch.ui.address.AddressPopup
 import com.ch.ui.form.FormFiled
@@ -26,5 +30,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn).setOnClickListener {
            ff.setIsCanEdit(!ff.getIsCanEdit())
         }
+        startActivity<MainActivity>()
     }
 }

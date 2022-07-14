@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fastenCh.keep">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application>
+        <receiver android:name="com.fastenCh.keep.receiver.NotificationClickReceiver" />
+        <activity
+            android:name="com.fastenCh.keep.activity.OnePixelActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/onePixelActivity" />
+
+        <service android:name="com.fastenCh.keep.service.LocalService" />
+        <service android:name="com.fastenCh.keep.service.HideForegroundService" />
+        <service
+            android:name="com.fastenCh.keep.service.JobHandlerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.fastenCh.keep.service.RemoteService"
+            android:process=":remote" />
+    </application>
+</manifest>

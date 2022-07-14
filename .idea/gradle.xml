@@ -12,6 +12,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bugly" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/jpush" />
+            <option value="$PROJECT_DIR$/keep" />
             <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>

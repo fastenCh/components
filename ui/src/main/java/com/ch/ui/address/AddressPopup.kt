@@ -96,7 +96,9 @@ class AddressPopup(
 
         mAdapterList = arrayOf(AddressAdapter(context), AddressAdapter(context), AddressAdapter(context))
 
+        loading.setOnClickListener { reload() }
         mIvClose.setOnClickListener { dismiss() }
+
         //用于非确定性选择，如可以选择省点击确定、选择市点击确定
         tvFinish.setOnClickListener {
             var pAddress: Address? = null
@@ -176,6 +178,11 @@ class AddressPopup(
             mRvList[2].visibility = View.VISIBLE
         }
         selectDefault(initIds)
+    }
+
+    override fun show() {
+        super.show()
+        reload()
     }
 
     /**

@@ -15,3 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "components"
 include ':app'
 include ':ui'
+include ':core'
+include ':bugly'
+include ':keep'
+include ':jpush'
