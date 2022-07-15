@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.ch.ui.TitleBar
+    <data>
+        <variable
+            name="vm"
+            type="com.ch.components.base.BaseViewModel" />
+        <variable
+            name="click"
+            type="com.ch.components.MainActivity.ClickProxy" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        app:isBack="true"
-        app:rightTitle1="測試"
-        app:rightTitle2="測試2"
-        app:rightDrawable1="@drawable/ic_back"
-        app:rightDrawable2="@drawable/ic_back"
-        android:layout_height="wrap_content"
-        android:title="我是标题" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <com.ch.ui.form.FormLabel
-        android:id="@+id/fl_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是内容呀"
-        android:textSize="16sp"
-        app:leftTitle="我是标题:"
-        app:rightTitle="@string/unit_person" />
+        <com.ch.ui.TitleBar
+            android:layout_width="match_parent"
+            app:isBack="true"
+            app:rightTitle1="測試"
+            app:rightTitle2="測試2"
+            app:rightDrawable1="@drawable/ic_back"
+            app:rightDrawable2="@drawable/ic_back"
+            android:layout_height="wrap_content"
+            android:title="我是标题" />
 
-    <com.ch.ui.form.FormFiled
-        android:id="@+id/ff"
-        android:title="我是标题"
-        android:digits="123456799*"
-        android:hint="请输入内容"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.ch.ui.form.FormLabel
+            android:id="@+id/fl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我是内容呀"
+            android:textSize="16sp"
+            app:leftTitle="我是标题:"
+            app:rightTitle="@string/unit_person" />
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <com.ch.ui.form.FormFiled
+            android:id="@+id/ff"
+            android:title="我是标题"
+            android:digits="123456799*"
+            android:hint="请输入内容"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.AppCompatRatingBar
-        android:stepSize="1"
-        android:numStars="5"
-        android:rating="2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <com.ch.ui.select.PictureView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:stepSize="1"
+            android:numStars="5"
+            android:rating="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <com.ch.ui.select.PictureView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

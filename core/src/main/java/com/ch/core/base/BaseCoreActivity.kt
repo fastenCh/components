@@ -15,8 +15,8 @@ abstract class BaseCoreActivity<VDB : ViewDataBinding> : AppCompatActivity(), IV
     protected lateinit var mBinding: VDB
     private val mViewModelScope = ViewModelScope()
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, getLayoutId())
         mBinding.lifecycleOwner = this
         bindView()
@@ -27,6 +27,8 @@ abstract class BaseCoreActivity<VDB : ViewDataBinding> : AppCompatActivity(), IV
     override fun showMsg(msg: String)  = msg.show()
 
     override fun showMsg(msgResId: Int) = msgResId.show()
+
+    override fun subscribeUi() {}
 
     protected open fun <T : ViewModel> getActivityScopeViewModel(modelClass: Class<T>): T {
         return mViewModelScope.getActivityScopeViewModel(this, modelClass)

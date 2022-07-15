@@ -2,7 +2,12 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
-
+ext {
+    PUBLISH_GROUP_ID = 'io.github.fastenCh'
+    PUBLISH_ARTIFACT_ID = "ui"
+    PUBLISH_VERSION = "1.0.0"
+}
+apply from: '../publish-mavencentral.gradle'
 android {
     compileSdk 32
 

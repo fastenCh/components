@@ -10,10 +10,12 @@ object JpushUtils {
      * @param context Context
      * @param isDebug Boolean
      *
-     *  manifestPlaceholders = [
-     *      JPUSH_PKGNAME : applicationId,
-     *      JPUSH_APPKEY : "你的 Appkey ",
-     *      JPUSH_CHANNEL : "developer-default"
+     * defaultConfig {
+         manifestPlaceholders = [
+            JPUSH_PKGNAME : applicationId,
+            JPUSH_APPKEY : "你的 Appkey ",
+            JPUSH_CHANNEL : "developer-default"
+        ]
      * }
      */
     fun init(context: Context, isDebug: Boolean = false) {
