@@ -1,0 +1,23 @@
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2254502-release-PMYvpa/') {
+                authentication(
+                        userName: '62d4ccffa908b6a4dbd6f768',
+                        password: 'd=4R(aGXW1ps'
+                )
+            }
+            snapshotRepository(url: 'https://packages.aliyun.com/maven/repository/2254502-snapshot-6sJjAU/') {
+                authentication(
+                        userName: '62d4ccffa908b6a4dbd6f768',
+                        password: 'd=4R(aGXW1ps'
+                )
+            }
+            pom.version = PUBLISH_VERSION
+            pom.artifactId = PUBLISH_ARTIFACTID
+            pom.groupId = PUBLISH_GROUP_ID
+        }
+    }
+}

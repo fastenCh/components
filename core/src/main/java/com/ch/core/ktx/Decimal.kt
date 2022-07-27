@@ -23,3 +23,5 @@ fun BigDecimal.mul(value: Any?): BigDecimal = this.multiply(value.toDecimal())
 fun BigDecimal.div(value: Any?, roundingMode: Int = 2): BigDecimal = this.divide(value.toDecimal(), roundingMode)
 
 fun BigDecimal.parse(newScale: Int = 2, roundingMode: Int = BigDecimal.ROUND_HALF_UP): BigDecimal = this.setScale(newScale, roundingMode)
+
+fun BigDecimal.toText(): String = this.toPlainString()

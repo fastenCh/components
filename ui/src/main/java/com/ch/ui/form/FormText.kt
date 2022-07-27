@@ -1,7 +1,6 @@
 package com.ch.ui.form
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.widget.TextView
 import com.ch.ui.R

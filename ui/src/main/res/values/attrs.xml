@@ -35,6 +35,7 @@
         <attr name="android:textSize" />
         <attr name="android:gravity" />
         <attr name="android:hint" />
+        <attr name="leftDrawable" />
     </declare-styleable>
 
     <declare-styleable name="FormLayout">

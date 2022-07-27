@@ -1,7 +1,11 @@
 package com.ch.ui.form
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
@@ -78,6 +82,7 @@ class FormLabel @JvmOverloads constructor(
         }
 
     var isInit = false
+    private var mLeftDrawable: Drawable? = null
 
     init {
         val a = context.obtainStyledAttributes(attributeSet, R.styleable.FormLabel)
@@ -99,6 +104,10 @@ class FormLabel @JvmOverloads constructor(
         //=========FormLabel 通用属性=========
         a.getViewSp(R.styleable.FormLabel_android_textSize) { mAndroidTextSize = it }
         a.getViewColor(R.styleable.FormLabel_android_textColor) { mAndroidTextColor = it }
+        a.getViewDrawable(R.styleable.FormText_leftDrawable) {
+            setPadding(paddingLeft + it.intrinsicWidth, paddingTop, paddingRight, paddingBottom)
+            mLeftDrawable = it
+        }
         a.recycle()
         isInit = true
         refreshTitle()
@@ -156,6 +165,14 @@ class FormLabel @JvmOverloads constructor(
         return span.create()
     }
 
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        if (mLeftDrawable != null) {
+            val fl = paddingLeft.toFloat() - mLeftDrawable!!.intrinsicWidth
+            canvas.drawBitmap(drawableToBitmap(mLeftDrawable!!), fl, paddingTop.toFloat(), null)
+        }
+    }
+
     override fun setText(text: CharSequence?, type: BufferType?) {
         if (isInit) super.setText(getWholeText(), type) else super.setText(text, type)
     }
@@ -174,4 +191,23 @@ class FormLabel @JvmOverloads constructor(
         }
         return text
     }
+
+    private fun drawableToBitmap(drawable: Drawable): Bitmap {
+        var bitmap: Bitmap? = null
+        if (drawable is BitmapDrawable) {
+            if (drawable.bitmap != null) {
+                return drawable.bitmap
+            }
+        }
+        if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        }
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
+    }
+
 }

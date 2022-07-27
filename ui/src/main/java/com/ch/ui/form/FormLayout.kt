@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import com.ch.ui.R
 import com.ch.ui.utils.*
 import com.ch.ui.utils.ViewExt.setLeftDrawable
@@ -17,6 +16,7 @@ import com.ch.ui.utils.ViewExt.setLeftDrawableTint
 import com.ch.ui.utils.ViewExt.setRightDrawable
 import com.ch.ui.utils.ViewExt.setRightDrawableSize
 import com.ch.ui.utils.ViewExt.setRightDrawableTint
+import kotlinx.coroutines.NonCancellable.children
 
 open class FormLayout @JvmOverloads constructor(
     context: Context,
@@ -116,7 +116,7 @@ open class FormLayout @JvmOverloads constructor(
     }
 
     private fun requestView() {
-        if (children.count() > 1) {
+        if (childCount > 1) {
             val childAt = getChildAt(1)
             this.removeView(childAt)
             val layoutParams = flContainer.layoutParams
